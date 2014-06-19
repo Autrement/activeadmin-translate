@@ -1,5 +1,10 @@
 # ActiveAdmin Translate Changelog
 
+## 0.3.1 - June 19, 2014
+
+- Various fix for recent versions of ActiveAdmin
+- Improve css for tabs
+
 ## 0.3.0 - June 3, 2014
 
 - Support for [Traco](https://github.com/barsoom/traco) as i18n backend
