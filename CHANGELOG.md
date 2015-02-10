@@ -1,5 +1,9 @@
 # ActiveAdmin Translate Changelog
 
+## 0.3.2 - February 10, 2015
+
+- Fix for form_buffers removed in recent versions of ActiveAdmin
+
 ## 0.3.1 - June 19, 2014
 
 - Various fix for recent versions of ActiveAdmin
