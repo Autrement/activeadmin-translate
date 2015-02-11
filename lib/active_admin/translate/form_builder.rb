@@ -70,8 +70,10 @@ module ActiveAdmin
           translation.instance_variable_set(:@errors, object.errors) if locale == I18n.default_locale
 
           fields = proc do |form|
-            form.input(:locale, :as => :hidden)
-            block.call(form)
+            [
+              form.input(:locale, as: :hidden),
+              block.call(form)
+            ].join.html_safe
           end
 
           inputs_for_nested_attributes(:for => [name, translation], :id => field_id(locale), :class => "inputs locale locale-#{ locale }", &fields)

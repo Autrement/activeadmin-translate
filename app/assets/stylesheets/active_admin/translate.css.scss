@@ -26,6 +26,10 @@
         &:hover,&:active {
           text-decoration: underline;
         }
+
+        box-shadow: none;
+        border-style: none;
+        background: inherit;
       }
 
       &.ui-state-active {
