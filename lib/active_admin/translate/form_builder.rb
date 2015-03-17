@@ -11,10 +11,10 @@ module ActiveAdmin
       # @param [Proc] block the block for the additional inputs
       #
       def translate_inputs(name = :translations, &block)
-        if self.respond_to?(:form_buffers)
-          html = form_buffers.last
-        else
-          html = "".html_safe
+        html = begin
+          self.form_buffers.last
+        rescue NoMethodError
+          "".html_safe
         end
         html << template.content_tag(:div, :class => "activeadmin-translate #{ translate_id }") do
           locale_tabs << locale_fields(name, block) << tab_script
@@ -46,21 +46,14 @@ module ActiveAdmin
 
 
       def locale_fields_for_traco(name, block)
-        buffer = form_buffers.dup
-
-        fieldset = ::I18n.available_locales.map do |locale|
-          @form_buffers = ["".html_safe]
+        ::I18n.available_locales.map do |locale|
 
           fields = proc do
-            block.call(locale)
+            block.call(self, locale)
           end
 
           inputs(name: name, :id => field_id(locale), :class => "inputs locale locale-#{locale}", &fields)
         end.join.html_safe
-
-        @form_buffers = buffer
-
-        fieldset
       end
 
 
